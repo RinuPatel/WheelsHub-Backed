@@ -34,7 +34,11 @@ router.use('/driver-register',require("./DriverApi/userDetails"));
 
 router.use('/demo',require('./demo'));
 
-router.use("/check-auth-phone",require('./DriverApi/checkAuthPhone'))
+router.use("/check-auth-phone",require('./DriverApi/checkAuthPhone'));
+
+router.use("/update-user",require("./DriverApi/updateUser"));
+
+
 
 
 module.exports = router;

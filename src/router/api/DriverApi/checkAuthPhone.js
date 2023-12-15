@@ -9,7 +9,7 @@ router.get("",auth,async(req,res)=>{
         console.log("user",username);
         if(userData){
             res.send(JSON.stringify({
-                staus:200,
+                status:200,
                 success:"true",
                 username:username
             })) 

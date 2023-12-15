@@ -8,9 +8,9 @@ const auth = async (req,res,next)=>{
         const token = req.headers['token']
         // const token = req.cookies.jwt;
 
-        console.log("my token === > ",token)
+        // console.log("my token === > ",token)
         const verifyUser = jwt.verify(token,AppConfig.SECRET_KEY);//it is verify the token with my secrate key
-        console.log("my verifyUSer",verifyUser)
+        // console.log("my verifyUSer",verifyUser)
         const user = await register.findOne({_id:verifyUser._id}) || await driverRegister.findOne({_id:verifyUser._id})
         // console.log(user)
         req.token = token;

@@ -5,7 +5,7 @@ const cors = require("cors")
 // const cookieParser = require("cookie-parser");
 const path = require("path");
 const app = express()
-const port = process.env.PORT || 8001;
+const port = process.env.PORT || 8000;
 app.use(bodyParser.json());//this is configration middlewer this is resposible to incoming  parse json  data 
 // app.use(bodyParser.urlencoded({ extended: true }));//this is work to parse html form data into js object data
 // app.use(express.urlencoded({ extended: false }));
