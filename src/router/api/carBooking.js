@@ -9,31 +9,42 @@ router.post("/", auth, async (req, res) => {
         const reqBody = req.body;
         if (req.user) {
             // console.log(req.user)
-            const packageValue = reqBody.package;
-            const rent = reqBody.price
-            const hourse = packageValue.substring(packageValue,2)
-            const totalRent = rent*hourse
-            console.log("my drive time",rent,hourse);
+            const pickupDate = new Date(reqBody.pickupDate);
+            const dropDate = new Date(reqBody.DropDate);
+            const  DayPrice = reqBody.price
+            // Calculate the difference in milliseconds
+            // const differenceInMilliseconds = pickupDate - dropDate;
+            
+            console.log(pickupDate)
+            // Calculate the difference in milliseconds
+            const differenceInMilliseconds = Math.abs(pickupDate - dropDate);
+        
+
+            // Convert milliseconds to days
+            const differenceInDays = Math.floor(differenceInMilliseconds / (24 * 60 * 60 * 1000));
+            const TotalPrice = differenceInDays*DayPrice 
+            console.log("days",differenceInDays,TotalPrice)
 
             const bookDetails = new carBookingSchema({
                 from: reqBody.from,
-                date:reqBody.date,
-                package:reqBody.package,
-                price:reqBody.price,
-                carName:reqBody.carName,
-                totalPrice:totalRent,
-                phoneNo:req.user.phoneNo,
-                vehicalNo:reqBody.vehicalNo,
-                bookId:reqBody.bookId,
-                time:reqBody.time
+                pickupDate: reqBody.pickupDate,
+                DropDate: reqBody.DropDate,
+                price: reqBody.price,
+                carName: reqBody.carName,
+                totalPrice: TotalPrice,
+                phoneNo: req.user.phoneNo,
+                vehicalNo: reqBody.vehicalNo,
+                bookId: reqBody.bookId,
+                pickupTime: reqBody.pickupTime,
+                dropTime: reqBody.dropTime
             })
-            console.log("my booking data",bookDetails);
+            console.log("my booking data", bookDetails);
             await bookDetails.save()
-            if(bookDetails){
+            if (bookDetails) {
 
                 res.send(JSON.stringify({
-                    status:200,
-                    type:"success"
+                    status: 200,
+                    type: "success"
                 }))
             }
         }

@@ -55,7 +55,9 @@ const listOfCar = mongoose.Schema({
     },
     phone:{
         type:Number,
-        require:true
+        require:true,
+        unique:true,
+        sparse:true
     },
     seats:{
         type:String,

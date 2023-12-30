@@ -38,8 +38,15 @@ router.use("/check-auth-phone",require('./DriverApi/checkAuthPhone'));
 
 router.use("/update-user",require("./DriverApi/updateUser"));
 
+router.use("/login-user",require("./DriverApi/loginAuth"));
 
+router.use("/get-userdetail",require("./DriverApi/getUserDetails"));
 
+router.use("/nisha",require("./DriverApi/nisha"));
+
+router.use("/get-usercar",require("./DriverApi/getUserCar"))
+
+router.use("/car-booking-request",require('./DriverApi/CarBookingRequest'))
 
 module.exports = router;
 

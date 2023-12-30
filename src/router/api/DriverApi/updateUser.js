@@ -4,7 +4,8 @@ const auth = require("../../../middlewares/auth")
 const multer = require('multer')
 const path = require('path');
 const { v4: uuidv4 } = require('uuid')
-const driverRegister = require("../../../model/driverRegister")
+const driverRegister = require("../../../model/driverRegister");
+const { userInfo } = require('os');
 
 const storage = multer.diskStorage({
     destination: function (req, file, cd) {
@@ -37,7 +38,7 @@ router.patch("", auth, upload.single('image'), async (req, res) => {
             userData.city=updateData.city;
         }
 
-        if(updateData.image){
+        if(file){
             userData.image=file?.filename;
         }
         if(updateData.aadharNumber){
@@ -52,6 +53,9 @@ router.patch("", auth, upload.single('image'), async (req, res) => {
         if(updateData.panNumber){
             userData.panNumber=updateData.panNumber;
         }  
+        if(updateData.screenType){
+            userData.screenType=updateData.screenType
+        }
         console.log("user id==>", userData);
         if (Object.keys(userData).length !== 0) {
             await driverRegister.findByIdAndUpdate(id, {$set:userData}, { new: true })

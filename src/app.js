@@ -10,7 +10,7 @@ app.use(bodyParser.json());//this is configration middlewer this is resposible t
 // app.use(bodyParser.urlencoded({ extended: true }));//this is work to parse html form data into js object data
 // app.use(express.urlencoded({ extended: false }));
 app.use(cors({
-    origin: ["http://localhost:3000","http://localhost:3001"],
+    origin: ["http://localhost:3000","http://localhost:3001","http://localhost:3002"],
     optionsSuccessStatus:200
 }))
 app.use(require('./router'))

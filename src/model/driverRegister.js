@@ -14,7 +14,9 @@ const registerSchema = mongoose.Schema({
     },
     phone:{
         type:Number,
-        require:true
+        require:true,
+        unique:true,
+        sparse:true
     },
     email:{
         type:String,
@@ -44,12 +46,17 @@ const registerSchema = mongoose.Schema({
         type:String,
         require:true
     },
+    screenType:{
+        type:Number,
+        require:true
+    },
     tokens:[{
         token:{
             type:String,
             require:true
         }
-    }]
+    }],
+    
 
 
 })

@@ -9,12 +9,12 @@ const carBooking = mongoose.Schema({
         type: String,
         require:true
     },
-    date:{
+    pickupDate:{
         type:Date,
         require:true
     },
-    package:{
-        type:String,
+    DropDate:{
+        type:Date,
         require:true
     },
     price:{
@@ -42,7 +42,11 @@ const carBooking = mongoose.Schema({
         type:mongoose.Schema.ObjectId,
         require:true
     },
-    time:{
+    pickupTime:{
+        type:String,
+        require:true
+    },
+    dropTime:{
         type:String,
         require:true
     }

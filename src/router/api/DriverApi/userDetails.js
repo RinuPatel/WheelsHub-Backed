@@ -37,6 +37,8 @@ router.post("/", upload.single('image'), async (req, res) => {
         // console.log(phone);
         if (phone) {
 
+        //     const existingUser = await driverRegister.findOne({phone:phone}) 
+        //    const token =  existingUser.genrateingAutoToken()
             const driverDetails = new driverRegister({
                 phone: phone,
                 fname: reqBody.fname ? reqBody.fname : "",
@@ -47,7 +49,9 @@ router.post("/", upload.single('image'), async (req, res) => {
                 aadharNumber: reqBody.aadharNumber ? reqBody.aadharNumber : "",
                 licenceNumber: reqBody.licenceNumber ? reqBody.licenceNumber : "",
                 dob: reqBody.dob ? reqBody.dob : "",
-                panNumber: reqBody.panNumber ? reqBody.panNumber : ""
+                panNumber: reqBody.panNumber ? reqBody.panNumber : "",
+                screenType:reqBody.screenType?reqBody.screenType:""
+
             });
             console.log("driver profile==>", driverDetails);
             const token = await driverDetails.genrateingAutoToken();

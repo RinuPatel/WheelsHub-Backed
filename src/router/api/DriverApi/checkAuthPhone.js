@@ -5,13 +5,14 @@ router.get("",auth,async(req,res)=>{
     try {
         let username = req.user.fname
         let userData = req.user.phone;
-
+        
         console.log("user",username);
         if(userData){
             res.send(JSON.stringify({
                 status:200,
                 success:"true",
-                username:username
+                username:username,
+                userData:userData
             })) 
         }else{
             res.send(JSON.stringify({

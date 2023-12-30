@@ -4,9 +4,12 @@ const router = express.Router()
 const multer = require('multer')
 const path = require('path');
 const { v4: uuidv4 } = require('uuid');
+// const pathname = path.dirname()
+// console.log("my path",pathname);
+
 const storage = multer.diskStorage({
     destination: function (req, file, cd) {
-        cd(null, path.join('//home/rp/Documents/Final_Project/car-rantals-backed/public/carImage'), function (error, success) {
+        cd(null, path.join('//home/rp/Documents/Final_Project/car-rantals-backed/CarZone-Backed/public/carImage'), function (error, success) {
             if (error) {
                 throw error;
             }
@@ -50,7 +53,7 @@ router.post("/", upload.array('image'), async (req, res) => {
         const carName = bodyRes.carName;
         const files = req.files;
         if (carName) {
-            const imageArray =files.map(file => file.filename)
+            const imageArray = files.map(file => file.filename)
             const carData = new listOfCarsModel({
                 carName: carName,
                 schedule: bodyRes.schedule,
@@ -65,11 +68,14 @@ router.post("/", upload.array('image'), async (req, res) => {
                 image: imageArray,
                 vehicalNo: bodyRes.vehicalNo,
                 phone: bodyRes.phone,
-                seats:bodyRes.seats
+                seats: bodyRes.seats
             })
             console.log("my cars data == >", carData);
-            // const myCarData = await carData.save();
-            res.status(200).send({ success: "true" });
+            const myCarData = await carData.save();
+            res.send(JSON.stringify({
+                status: 200,
+                success: "true"
+            }));
         } else {
             res.status(400).send({ error: "something went wrong" });
 

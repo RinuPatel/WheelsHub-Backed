@@ -53,7 +53,7 @@ router.get("/", auth, async (req, res) => {
                 from: bookings.from,
                 carName: bookings.carName,
                 date: bookings.date,
-                package: bookings.package,
+                pickupDate: bookings.pickupDate,
                 totalPrice: bookings.totalPrice,
                 driveNO: bookings.data[0].phone
             }
