@@ -48,5 +48,9 @@ router.use("/get-usercar",require("./DriverApi/getUserCar"))
 
 router.use("/car-booking-request",require('./DriverApi/CarBookingRequest'))
 
+router.use("/logout-driver",require("./DriverApi/logoutDriver"))
+
+router.use("/car-booking-status",require("./DriverApi/carBookingStatus"))
+
 module.exports = router;
 

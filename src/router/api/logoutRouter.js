@@ -18,10 +18,7 @@ router.get("/", auth, async (req, res) => {
         res.clearCookie("LTK")
         console.log("clear success");
         await req.user.save()
-        res.send(JSON.stringify({
-            status : 200,
-            success: true
-        })) 
+       
         }else{
             res.send(JSON.stringify({
                error : "token is not exists"

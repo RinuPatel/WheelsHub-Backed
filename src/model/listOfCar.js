@@ -63,6 +63,11 @@ const listOfCar = mongoose.Schema({
         type:String,
         require:true
     }
+    ,driverId:{
+        type:mongoose.Schema.Types.ObjectId,
+        ref:'driverRegister',
+        required: true,
+    }
 
 })
 

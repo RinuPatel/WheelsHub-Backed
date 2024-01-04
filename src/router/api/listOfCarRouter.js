@@ -4,6 +4,8 @@ const router = express.Router()
 const multer = require('multer')
 const path = require('path');
 const { v4: uuidv4 } = require('uuid');
+const auth = require("../../middlewares/auth")
+const driverRegister = require("../../model/driverRegister")
 // const pathname = path.dirname()
 // console.log("my path",pathname);
 
@@ -46,10 +48,13 @@ const upload = multer({
     }
 })
 
-router.post("/", upload.array('image'), async (req, res) => {
+router.post("/",auth, upload.array('image'), async (req, res) => {
     try {
         const bodyRes = req.body;
-        console.log("my req === >", bodyRes);
+        const driverFind = req.user
+        const driverId = driverFind._id
+        console.log("my req === >",driverId);
+     
         const carName = bodyRes.carName;
         const files = req.files;
         if (carName) {
@@ -64,14 +69,15 @@ router.post("/", upload.array('image'), async (req, res) => {
                 fuelType: bodyRes.fuelType,
                 trasmission: bodyRes.trasmission,
                 city: bodyRes.city,
-                admidName: bodyRes.admidName ? bodyRes.admidName : "",
+                admidName: driverFind.fname,
                 image: imageArray,
                 vehicalNo: bodyRes.vehicalNo,
                 phone: bodyRes.phone,
-                seats: bodyRes.seats
+                seats: bodyRes.seats,
+                driverId:driverId
             })
             console.log("my cars data == >", carData);
-            const myCarData = await carData.save();
+            await carData.save();
             res.send(JSON.stringify({
                 status: 200,
                 success: "true"

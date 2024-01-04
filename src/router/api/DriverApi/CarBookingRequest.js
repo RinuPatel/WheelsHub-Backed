@@ -5,52 +5,43 @@ const listOfCar = require("../../../model/listOfCar")
 const auth = require("../../../middlewares/auth")
 router.get("/", auth, async (req, res) => {
     try {
-        const user = req.user.phone
-        let bookId = ""
-        console.log("user driver number",user)
-        const carBookDetail = await carBooking.find()
-        carBookDetail.forEach(element => {
-            bookId = element.bookId;
-            console.log("first", bookId)
-            
-        });
-        const findDriver = await listOfCar.find({_id:bookId})
+        const user = req.user
+        const _id = user._id
+
+        console.log("user driver number", _id)
+
+        const findDriver = await listOfCar.find({ driverId: _id })
         let phone = ""
-        let id = ""
+        let idArray = [];
+
         console.log("car book detail", findDriver)
-        findDriver.forEach(element =>{
+        findDriver.forEach(element => {
             phone = element.phone
-            id = element._id
-            console.log("driver phone==>",phone)
-           
+            const _id = element._id
+            idArray.push(_id)
+
         })
-        if(user === phone){
-          const data =   await carBooking.find({bookId:id})
-          console.log("my booking data",data)
-          res.send(JSON.stringify({
-            status:200,
-            data:data
-          }))
-        }else{
+        console.log("driver phone==>", idArray)
+        if (user.phone === phone) {
+            const data = await carBooking.find({ bookId: { $in: idArray } })
+            console.log("my booking data", data)
             res.send(JSON.stringify({
-                status:401,
-                type:"not fond"
+                status: 200,
+                data: data,
+            }))
+        } else {
+            res.send(JSON.stringify({
+                status: 401,
+                type: "not fond"
             }))
         }
-        
-        // console.log("car driver details",findDriver)
-        // if(user){
-        //     findDriver.map((car)=>{
-        //         console.log("car data",car)
-        //     })
-        // }
 
-       
+
     } catch (error) {
         console.log(error)
         res.send(JSON.stringify({
-            status:500,
-            type:"Something went wrong"
+            status: 500,
+            type: "Something went wrong"
         }))
     }
 })

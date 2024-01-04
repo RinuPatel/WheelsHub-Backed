@@ -49,7 +49,9 @@ const carBooking = mongoose.Schema({
     dropTime:{
         type:String,
         require:true
-    }
+    },
+   
+    status: { type: String, enum: ['pending', 'Accepted','Cancel'], default: 'pending' },
 })
 
 const carBookings = new mongoose.model("carBookings",carBooking);
