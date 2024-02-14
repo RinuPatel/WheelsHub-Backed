@@ -55,7 +55,9 @@ router.get("/", auth, async (req, res) => {
                 date: bookings.date,
                 pickupDate: bookings.pickupDate,
                 totalPrice: bookings.totalPrice,
-                driveNO: bookings.data[0].phone
+                driveNO: bookings.data[0].phone,
+                status:bookings.status,
+                pickupTime:bookings.pickupTime
             }
         })
         res.send(JSON.stringify({

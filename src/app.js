@@ -17,7 +17,7 @@ app.use(require('./router'))
 app.use(express.static('public'));
 app.post("/", (req, res) => {
     try {
-        console.log("my req data ==>" ,req.body)
+        console.log("my req data ==>" ,req.body);
         res.send("hello world")
     } catch (error) {
         console.log("some error occur", error);

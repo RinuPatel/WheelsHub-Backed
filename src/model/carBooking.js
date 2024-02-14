@@ -40,7 +40,8 @@ const carBooking = mongoose.Schema({
     },
     bookId:{
         type:mongoose.Schema.ObjectId,
-        require:true
+        require:true,
+        sparse:true
     },
     pickupTime:{
         type:String,

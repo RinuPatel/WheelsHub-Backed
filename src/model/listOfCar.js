@@ -48,26 +48,36 @@ const listOfCar = mongoose.Schema({
         type: [String],
         require: true
     },
-  
+
     vehicalNo: {
         type: String,
         require: true
     },
-    phone:{
-        type:Number,
-        require:true,
-        unique:true,
-        sparse:true
+    phone: {
+        type: Number,
+        require: true,
+        unique: true,
+        sparse: true
     },
-    seats:{
-        type:String,
-        require:true
+    seats: {
+        type: String,
+        require: true
     }
-    ,driverId:{
-        type:mongoose.Schema.Types.ObjectId,
-        ref:'driverRegister',
+    , driverId: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'driverRegister',
         required: true,
+    },
+    isBooked: {
+        type: Boolean
+    },
+    onAvailble: {
+        days: { type: Number, default: 0 },
+        hours: { type: Number, default: 0 },
+        minutes: { type: Number, default: 0 },
+        seconds: { type: Number, default: 0 },
     }
+
 
 })
 

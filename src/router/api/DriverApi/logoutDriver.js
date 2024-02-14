@@ -16,7 +16,7 @@ router.get("/", auth, async (req, res) => {
             res.send(JSON.stringify({
                 error: "token is not exists"
             }))
-        }
+        };
     
     } catch (error) {
         console.log(error);

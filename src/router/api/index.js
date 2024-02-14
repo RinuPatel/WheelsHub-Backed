@@ -10,7 +10,7 @@ router.use('/user-logout',require("./logoutRouter"));
 
 router.use('/car-list',require('./listOfCarRouter'));
 
-router.use('/display-carlist',require('./displayListOfCars'));
+router.use('/display-carlist',require('./DriverApi/displayListOfCars'));
 
 router.use('/check-login',require('./checkUserLogin'));
 
@@ -51,6 +51,10 @@ router.use("/car-booking-request",require('./DriverApi/CarBookingRequest'))
 router.use("/logout-driver",require("./DriverApi/logoutDriver"))
 
 router.use("/car-booking-status",require("./DriverApi/carBookingStatus"))
+
+router.use('/getBooking-details',require("./DriverApi/getCarBookingDetails"))
+
+
 
 module.exports = router;
 

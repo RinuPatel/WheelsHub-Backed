@@ -6,12 +6,13 @@ const path = require('path');
 const { v4: uuidv4 } = require('uuid');
 const auth = require("../../middlewares/auth")
 const driverRegister = require("../../model/driverRegister")
-// const pathname = path.dirname()
 // console.log("my path",pathname);
 
 const storage = multer.diskStorage({
     destination: function (req, file, cd) {
-        cd(null, path.join('//home/rp/Documents/Final_Project/car-rantals-backed/CarZone-Backed/public/carImage'), function (error, success) {
+        const pathname = path.join(__dirname,'..','..','..','public','carImage')
+        console.log(pathname);
+        cd(null, path.join(pathname), function (error, success) {
             if (error) {
                 throw error;
             }
