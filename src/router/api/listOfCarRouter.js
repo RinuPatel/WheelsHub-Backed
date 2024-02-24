@@ -54,7 +54,7 @@ router.post("/",auth, upload.array('image'), async (req, res) => {
         const bodyRes = req.body;
         const driverFind = req.user
         const driverId = driverFind._id
-        console.log("my req === >",driverId);
+        console.log("my req === >",req.body);
      
         const carName = bodyRes.carName;
         const files = req.files;
@@ -70,11 +70,11 @@ router.post("/",auth, upload.array('image'), async (req, res) => {
                 fuelType: bodyRes.fuelType,
                 trasmission: bodyRes.trasmission,
                 city: bodyRes.city,
-                admidName: driverFind.fname,
-                image: imageArray,
+                image: imageArray?imageArray:"",
                 vehicalNo: bodyRes.vehicalNo,
                 phone: bodyRes.phone,
                 seats: bodyRes.seats,
+                admidName: driverFind.fname,
                 driverId:driverId
             })
             console.log("my cars data == >", carData);

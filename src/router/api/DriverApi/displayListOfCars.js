@@ -13,7 +13,7 @@ router.get("/", async (req, res) => {
         if (reqParams && reqParams.item_id) {
             const data = await carItem.findById(reqParams.item_id, {
                 _id: 1, carName: 1, schedule: 1, exteriorColor: 1, interiorColor: 1, makeYear
-                    : 1, registerYear: 1, fuelType: 1, trasmission: 1, city: 1, admidName: 1, image: 1, cartype: 1, vehicalNo: 1, phone: 1, seats: 1
+                    : 1, registerYear: 1, fuelType: 1, trasmission: 1, city: 1, schedule: 1, image: 1, cartype: 1, vehicalNo: 1, phone: 1, seats: 1
             })
             res.send(data)
         } else if (reqParams && reqParams.city) {

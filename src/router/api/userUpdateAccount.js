@@ -14,7 +14,7 @@ router.patch("", auth, async (req, res) => {
 
            
                 const updateData = await regiter.findByIdAndUpdate(id, updateDetails, { new: true })
-                // console.log("updates user",updateData);
+                console.log("updates user",updateData);
     
                 res.send(JSON.stringify({
                     status: 200,
