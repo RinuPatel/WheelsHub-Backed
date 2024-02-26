@@ -57,6 +57,7 @@ router.post("/",auth, upload.array('image'), async (req, res) => {
         console.log("my req === >",req.body);
      
         const carName = bodyRes.carName;
+        
         const files = req.files;
         if (carName) {
             const imageArray = files.map(file => file.filename)
