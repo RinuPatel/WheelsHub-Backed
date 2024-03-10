@@ -14,7 +14,7 @@ router.patch("/", auth, async (req, res) => {
         if(reqParams && bookId){
             const updateReq ={status:reqBody.status}
             const result = await carBooking.findByIdAndUpdate(bookId,{$set:updateReq},{new:true})
-            // await carBooking.save()
+            await carBooking.save()
             console.log(result);
             res.send(JSON.stringify({
                 status:200,

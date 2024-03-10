@@ -54,7 +54,23 @@ router.use("/car-booking-status",require("./DriverApi/carBookingStatus"))
 
 router.use('/getBooking-details',require("./DriverApi/getCarBookingDetails"))
 
+router.use('/driver-req-status',require("./DriverApi/driverReqStatus"))
 
+router.use("/driver-income",require("./DriverApi/driverIncome"))
+
+router.use("/get-income",require("./DriverApi/getIncome"))
+
+router.use("/online-offline-car",require("./DriverApi/onlineOffline"));
+
+router.use("/get-statuscar",require("./DriverApi/getCarStatus"))
+
+router.use("/user-couter",require("./DriverApi/CountUser"))
+
+router.use("/recetly-booking",require("./DriverApi/recentlyBooking"));
+
+router.use("/driver-account",require("./DriverApi/DriverAccount"));
+
+router.use("/driver-account-update",require("./DriverApi/updateAccount"))
 
 module.exports = router;
 

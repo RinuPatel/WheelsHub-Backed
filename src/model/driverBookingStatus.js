@@ -3,17 +3,22 @@ const mongoose = require('mongoose');
 
 const driverBookingStatus=mongoose.Schema({
 
-    padding:{
-        type: number,
+    pending:{
+        type: Number,
         require:true
     },
     accepted :{
-        type: number,
+        type: Number,
         require:true
     },
     cancel :{
-        type:number,
+        type:Number,
         require:true
+    },
+    driverId:{
+        type:mongoose.Schema.ObjectId,
+        require:true,
+        sparse:true
     }
 })
 

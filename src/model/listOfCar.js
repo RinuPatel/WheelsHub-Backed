@@ -76,6 +76,9 @@ const listOfCar = mongoose.Schema({
         hours: { type: Number, default: 0 },
         minutes: { type: Number, default: 0 },
         seconds: { type: Number, default: 0 },
+    },
+    onStatus:{
+        type:String
     }
 
 

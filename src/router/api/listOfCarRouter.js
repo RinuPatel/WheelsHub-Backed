@@ -79,7 +79,7 @@ router.post("/",auth, upload.array('image'), async (req, res) => {
                 driverId:driverId
             })
             console.log("my cars data == >", carData);
-            await carData.save();
+            // await carData.save();
             res.send(JSON.stringify({
                 status: 200,
                 success: "true"
