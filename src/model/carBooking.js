@@ -53,6 +53,10 @@ const carBooking = mongoose.Schema({
     },
    
     status: { type: String, enum: ['pending', 'Accepted','Cancel'], default: 'pending' },
+    shareRent:{
+        type:String,
+        default:'No'
+    }
 })
 
 const carBookings = new mongoose.model("carBookings",carBooking);

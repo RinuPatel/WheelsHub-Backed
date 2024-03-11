@@ -36,7 +36,8 @@ router.post("/", auth, async (req, res) => {
                 vehicalNo: reqBody.vehicalNo,
                 bookId: reqBody.bookId,
                 pickupTime: reqBody.pickupTime,
-                dropTime: reqBody.dropTime
+                dropTime: reqBody.dropTime,
+                shareRent:reqBody.shareRent?reqBody.shareRent:"no"
             })
             console.log("my booking data", bookDetails);
             await bookDetails.save()
