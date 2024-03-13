@@ -9,26 +9,26 @@ const { ObjectId } = mongoose.Types;
 router.get("/", async (req, res) => {
     try {
         const reqParams = req.query;
-        console.log("my reqParams", reqParams)
+        const reqBody = req.body;
+        console.log("my reqParams", req)
         if (reqParams && reqParams.item_id) {
             const data = await carItem.findById(reqParams.item_id, {
                 _id: 1, carName: 1, schedule: 1, exteriorColor: 1, interiorColor: 1, makeYear
-                    : 1, registerYear: 1, fuelType: 1, trasmission: 1, city: 1, schedule: 1, image: 1, cartype: 1, vehicalNo: 1, phone: 1, seats: 1,onStatus:1
+                    : 1, registerYear: 1, fuelType: 1, trasmission: 1, city: 1, schedule: 1, image: 1, cartype: 1, vehicalNo: 1, phone: 1, seats: 1, onStatus: 1
             })
             res.send(data)
-        } else if (reqParams && reqParams.city) {
-            const { city } = req.query;
+        } else if (reqBody && reqBody.city) {
+            const { city,seats } = reqBody;
             // If 'city' is a single string, convert it to an array
-
-            const cities = Array.isArray(city) ? city : [city];
-            console.log(cities);
+            const cities = city && Array.isArray(city) ? city : [];
+            console.log("my multi ===>", cities);
             const data = await carItem.find({ city: { $in: cities } }, {
-                _id: 1, carName: 1, schedule: 1, exteriorColor: 1, interiorColor: 1, trasmission: 1, image: 1, city: 1, phone: 1, seats: 1,onStatus:1
+                _id: 1, carName: 1, schedule: 1, exteriorColor: 1, interiorColor: 1, trasmission: 1, image: 1, city: 1, phone: 1, seats: 1, onStatus: 1
             })
             res.send(data)
         } else if (reqParams && reqParams.car_categary) {
             const data = await carItem.find({ carName: { $regex: reqParams.car_categary, $options: "i" } }, {
-                _id: 1, carName: 1, schedule: 1, exteriorColor: 1, interiorColor: 1, trasmission: 1, image: 1, city: 1, phone: 1, seats: 1,onStatus:1
+                _id: 1, carName: 1, schedule: 1, exteriorColor: 1, interiorColor: 1, trasmission: 1, image: 1, city: 1, phone: 1, seats: 1, onStatus: 1
             }).exec();
             res.send(data);
         } else {
@@ -86,7 +86,7 @@ router.get("/", async (req, res) => {
                 return time.replace(/(AM|PM)/, '');
             }
             const data = await carItem.find({}, {
-                _id: 1, carName: 1, schedule: 1, exteriorColor: 1, interiorColor: 1, trasmission: 1, image: 1, city: 1, phone: 1, seats: 1,onStatus:1
+                _id: 1, carName: 1, schedule: 1, exteriorColor: 1, interiorColor: 1, trasmission: 1, image: 1, city: 1, phone: 1, seats: 1, onStatus: 1
             })
 
             //   data[index].booking_  

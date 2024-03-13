@@ -6,7 +6,7 @@ const auth = require("../../middlewares/auth")
 router.get("/", auth, async (req, res) => {
     try {
         console.log("user id", req.user);
-        
+
         //for logout single device
         // req.user.tokens = req.user.tokens.filter((currElement) => {
         //     return currElement.token !== req.token
@@ -15,16 +15,20 @@ router.get("/", auth, async (req, res) => {
         //multi of device
         if (req.user) {
             req.user.tokens = [];
-        res.clearCookie("LTK")
-        console.log("clear success");
-        await req.user.save()
-       
-        }else{
+            res.clearCookie("LTK")
+            console.log("clear success");
+            await req.user.save()
             res.send(JSON.stringify({
-               error : "token is not exists"
+                status:200,
+                type:"success"
+            }))
+
+        } else {
+            res.send(JSON.stringify({
+                error: "token is not exists"
             }))
         }
-       
+
     } catch (error) {
         res.send("some error occur");
         console.log("some error here", error)

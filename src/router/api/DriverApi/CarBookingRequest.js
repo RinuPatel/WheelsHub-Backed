@@ -13,20 +13,20 @@ router.get("/", auth, async (req, res) => {
         const user = req.user
         const _id = user._id
 
-        // console.log("user driver number", _id)
+        console.log("user driver number", _id)
 
         const findDriver = await listOfCar.find({ driverId: _id })
         let phone = ""
         let idArray = [];
 
-        // console.log("car book detail", findDriver)
+        console.log("car book detail", findDriver)
         findDriver.forEach(element => {
             phone = element.phone
             const _id = element._id
             idArray.push(_id)
 
         })
-        // console.log("driver phone==>", idArray)
+        console.log("driver phone==>", idArray)
 
         let pendingStatusCounter = 0;
         let cancelStatusCounter = 0;
@@ -35,11 +35,12 @@ router.get("/", auth, async (req, res) => {
         const currentDate = new Date();
         const currentMonth = currentDate.getMonth() + 1; // JavaScript months are 0-indexed, so we add 1
         const currentYear = currentDate.getFullYear();
+        console.log("user phone number===>",user.phone,phone);
         if (user.phone === phone) {
             const data = await carBooking.find({ bookId: { $in: idArray } })
-
+                console.log("user number==>",data);
             const monthlyIncomeDate = data.reduce((acc, booking) => {
-                // console.log("object", booking);
+                console.log("object", booking);
                 if (booking.status !== "Cancel") {
 
                     const month = booking.pickupDate.getMonth() + 1;
