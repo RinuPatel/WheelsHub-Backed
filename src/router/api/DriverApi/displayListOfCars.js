@@ -6,8 +6,9 @@ const mongoose = require('mongoose')
 const { ObjectId } = mongoose.Types;
 
 
-router.get("/", async (req, res) => {
+router.all("/", async (req, res) => {
     try {
+
         const reqParams = req.query;
         const reqBody = req.body;
         console.log("my reqParams", req)
@@ -17,15 +18,25 @@ router.get("/", async (req, res) => {
                     : 1, registerYear: 1, fuelType: 1, trasmission: 1, city: 1, schedule: 1, image: 1, cartype: 1, vehicalNo: 1, phone: 1, seats: 1, onStatus: 1
             })
             res.send(data)
-        } else if (reqBody && reqBody.city) {
+        }else if(reqParams && reqParams.city){
+            const data = await carItem.find({city:reqParams.city},{
+                _id: 1, carName: 1, schedule: 1, exteriorColor: 1, interiorColor: 1, trasmission: 1, image: 1, city: 1, phone: 1, seats: 1, onStatus: 1
+            })
+            console.log("my reqparam ==>",reqParams.city,data);
+            res.send(data)
+        }
+        
+        else if (reqBody && reqBody.city || reqBody.seats) {
             const { city,seats } = reqBody;
             // If 'city' is a single string, convert it to an array
             const cities = city && Array.isArray(city) ? city : [];
-            console.log("my multi ===>", cities);
-            const data = await carItem.find({ city: { $in: cities } }, {
+            const seates = seats && Array.isArray(seats) ? seats : [];
+            console.log("my multi ===>", cities,seates);
+            const data = await carItem.find({$or:[{city: { $in: cities}},{seats:{$in :seates}}]}, {
                 _id: 1, carName: 1, schedule: 1, exteriorColor: 1, interiorColor: 1, trasmission: 1, image: 1, city: 1, phone: 1, seats: 1, onStatus: 1
             })
             res.send(data)
+            console.log("my filter data ==>",data);
         } else if (reqParams && reqParams.car_categary) {
             const data = await carItem.find({ carName: { $regex: reqParams.car_categary, $options: "i" } }, {
                 _id: 1, carName: 1, schedule: 1, exteriorColor: 1, interiorColor: 1, trasmission: 1, image: 1, city: 1, phone: 1, seats: 1, onStatus: 1

@@ -60,8 +60,8 @@ route.patch("/", auth, upload.array('image'), async (req, res) => {
         const files = req.files;
         let carId;
         // const carObjectId = new ObjectId(carId)
-        if(ObjectId.isValid(req.query.carId)){
-            carId = new ObjectId(req.query.carId)
+        if(ObjectId.isValid(req.body.carId)){
+            carId = new ObjectId(req.body.carId)
         }
         let imageURL = [];
         if (files && files.length > 0) {
