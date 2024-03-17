@@ -8,10 +8,11 @@ router.get("/", auth, async (req, res) => {
         console.log("user name which is booking car", req.user)
         const userPhoneNo = req.user.phoneNo;
         console.log("user phone number ===>", userPhoneNo);
-        const carBookingData = await carbookings.find({ phoneNo: userPhoneNo }, {
-            phoneNo: 1
+        // const carBookingData = await carbookings.find({ phoneNo: userPhoneNo }, {
+        //     phoneNo: 1
 
-        })
+        // })
+        const carBookingData = await carbookings.find({ phoneNo: userPhoneNo })
         console.log("my carBooking Data===>", carBookingData)
         var userNo = ""
         const myAuthUser = carBookingData.map(elm => {
@@ -48,18 +49,21 @@ router.get("/", auth, async (req, res) => {
         if (userNo === userPhoneNo) {
         }
 
-        const bookingDetails = result.map(bookings => {
+        const bookingDetails = result.map((bookings,index) => {
+            const driverNum = bookings.data[0] && bookings.data[0].phone ? bookings.data[0].phone : "";
+            console.log("booking==>",bookings.data[0])
             return {
                 from: bookings.from,
                 carName: bookings.carName,
                 date: bookings.date,
                 pickupDate: bookings.pickupDate,
                 totalPrice: bookings.totalPrice,
-                driveNO: bookings.data[0].phone,
+                driveNO: driverNum,
                 status:bookings.status,
                 pickupTime:bookings.pickupTime
             }
         })
+        // console.log("my booking details==>",bookingDetails)
         res.send(JSON.stringify({
             status: 200,
             type: "success",

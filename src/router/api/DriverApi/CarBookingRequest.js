@@ -19,7 +19,7 @@ router.get("/", auth, async (req, res) => {
         let phone = ""
         let idArray = [];
 
-        console.log("car book detail", findDriver)
+        // console.log("car book detail", findDriver)
         findDriver.forEach(element => {
             phone = element.phone
             const _id = element._id

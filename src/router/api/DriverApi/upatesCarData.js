@@ -53,11 +53,12 @@ const upload = multer({
 
 
 
-route.patch("/", auth, upload.array('image'), async (req, res) => {
+route.patch("/",upload.array('image'), async (req, res) => {
     try {
-        const user = req.user;
+        // const user = req.user;
         const updateData = req.body
         const files = req.files;
+        console.log("body data==>",updateData)
         let carId;
         // const carObjectId = new ObjectId(carId)
         if(ObjectId.isValid(req.body.carId)){
@@ -81,7 +82,7 @@ route.patch("/", auth, upload.array('image'), async (req, res) => {
         )
 
 
-        console.log("car id==>", carId,result);
+        console.log("car id==>", carId);
         res.send(JSON.stringify({
             status:200,
             type:"Success"
