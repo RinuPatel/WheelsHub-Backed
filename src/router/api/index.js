@@ -74,7 +74,9 @@ router.use("/driver-account-update",require("./DriverApi/updateAccount"))
 
 router.use("/get-driver-car",require("./DriverApi/getDriverCars"))
 
-router.use("/update-car-data",require("./DriverApi/upatesCarData"))
+router.use("/update-car-data",require("./DriverApi/upatesCarData"));
+
+router.use("/delete-car",require("./DriverApi/deleteCar"))
 
 module.exports = router;
 
