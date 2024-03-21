@@ -78,5 +78,21 @@ router.use("/update-car-data",require("./DriverApi/upatesCarData"));
 
 router.use("/delete-car",require("./DriverApi/deleteCar"))
 
+// Admin Api
+
+router.use("/client",require("./Admin/client"))
+
+router.use("/driver",require("./Admin/driver"))
+
+router.use("/contect-us",require("./Admin/contect"))
+
+router.use("/car-counter",require("./Admin/CountCar"))
+
+router.use("/register",require("./Admin/registerAdmin"))
+
+router.use("/login-admin",require("./Admin/login"));
+
+router.use("/logOut",require("./Admin/logOut"))
+
 module.exports = router;
 

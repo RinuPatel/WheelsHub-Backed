@@ -2,6 +2,7 @@ const jwt = require('jsonwebtoken')
 const register = require("../model/registration")
 const driverRegister = require("../model/driverRegister")
 const AppConfig = require("../config/AppConfig")
+const adminRegister = require("../model/adminRegister")
 
 const auth = async (req,res,next)=>{
     try {
@@ -11,7 +12,7 @@ const auth = async (req,res,next)=>{
         // console.log("my token === > ",token)
         const verifyUser = jwt.verify(token,AppConfig.SECRET_KEY);//it is verify the token with my secrate key
         // console.log("my verifyUSer",verifyUser)
-        const user = await register.findOne({_id:verifyUser._id}) || await driverRegister.findOne({_id:verifyUser._id})
+        const user = await register.findOne({_id:verifyUser._id}) || await driverRegister.findOne({_id:verifyUser._id}) || await adminRegister.findOne({_id:verifyUser._id})
         // console.log(user)
         req.token = token;
         req.user = user;

@@ -97,7 +97,7 @@ router.all("/", async (req, res) => {
                 return time.replace(/(AM|PM)/, '');
             }
             const data = await carItem.find({}, {
-                _id: 1, carName: 1, schedule: 1, exteriorColor: 1, interiorColor: 1, trasmission: 1, image: 1, city: 1, phone: 1, seats: 1, onStatus: 1
+                _id: 1, carName: 1, schedule: 1, exteriorColor: 1, interiorColor: 1, trasmission: 1, image: 1, city: 1, phone: 1, seats: 1, onStatus: 1,admidName:1
             })
 
             //   data[index].booking_  
