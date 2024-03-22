@@ -92,7 +92,15 @@ router.use("/register",require("./Admin/registerAdmin"))
 
 router.use("/login-admin",require("./Admin/login"));
 
-router.use("/logOut",require("./Admin/logOut"))
+router.use("/logOut",require("./Admin/logOut"));
+
+router.use("/delete-user",require("./Admin/deleteClient"));
+
+router.use("/delete-driver",require("./Admin/deleteDriver"));
+
+router.use("/delete-message",require("./Admin/deleteMessage"));
+
+router.use("/day-booking",require("./Admin/dayWiseBooking"))
 
 module.exports = router;
 
